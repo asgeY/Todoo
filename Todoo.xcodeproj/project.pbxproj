@@ -10,6 +10,7 @@
 		9D78D8C6060025AAD9847EDA /* Pods_Todoo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6877D811902C42E5D79CAA4 /* Pods_Todoo.framework */; };
 		D9277F06219E44C800276D7F /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9277F05219E44C800276D7F /* Item.swift */; };
 		D9277F08219E44D900276D7F /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9277F07219E44D900276D7F /* Category.swift */; };
+		D9277F11219EC0D000276D7F /* SwipeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9277F10219EC0D000276D7F /* SwipeTableViewController.swift */; };
 		E920C5D621894CD200854850 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E920C5D521894CD200854850 /* AppDelegate.swift */; };
 		E920C5D821894CD200854850 /* TodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E920C5D721894CD200854850 /* TodoListViewController.swift */; };
 		E920C5DB21894CD200854850 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E920C5D921894CD200854850 /* Main.storyboard */; };
@@ -24,6 +25,7 @@
 		CA0B9EDEAD1553F054E7FB67 /* Pods-Todoo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Todoo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Todoo/Pods-Todoo.debug.xcconfig"; sourceTree = "<group>"; };
 		D9277F05219E44C800276D7F /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		D9277F07219E44D900276D7F /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		D9277F10219EC0D000276D7F /* SwipeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTableViewController.swift; sourceTree = "<group>"; };
 		E920C5D221894CD200854850 /* Todoo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Todoo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E920C5D521894CD200854850 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E920C5D721894CD200854850 /* TodoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListViewController.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 			children = (
 				E9D434A921912A0F008A16EB /* CategoryViewController.swift */,
 				E920C5D721894CD200854850 /* TodoListViewController.swift */,
+				D9277F10219EC0D000276D7F /* SwipeTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -163,6 +166,7 @@
 				TargetAttributes = {
 					E920C5D121894CD200854850 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
 					};
 				};
 			};
@@ -207,15 +211,19 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Todoo/Pods-Todoo-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SwipeCellKit/SwipeCellKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChameleonFramework.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwipeCellKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -255,6 +263,7 @@
 				E9D434AA21912A0F008A16EB /* CategoryViewController.swift in Sources */,
 				E920C5D821894CD200854850 /* TodoListViewController.swift in Sources */,
 				E920C5D621894CD200854850 /* AppDelegate.swift in Sources */,
+				D9277F11219EC0D000276D7F /* SwipeTableViewController.swift in Sources */,
 				D9277F08219E44D900276D7F /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -402,6 +411,7 @@
 			baseConfigurationReference = CA0B9EDEAD1553F054E7FB67 /* Pods-Todoo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V8SF8848QZ;
 				INFOPLIST_FILE = Todoo/Info.plist;
@@ -411,6 +421,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.asgey.Todoo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -421,6 +432,7 @@
 			baseConfigurationReference = 964025008813B508786D928E /* Pods-Todoo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V8SF8848QZ;
 				INFOPLIST_FILE = Todoo/Info.plist;
