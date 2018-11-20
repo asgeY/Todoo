@@ -33,9 +33,14 @@ class CategoryViewController: SwipeTableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
-        cell.textLabel?.text = categories?[indexPath.row].name ?? "No Categories Added Yet"
-        cell.backgroundColor = UIColor(hexString: categories?[indexPath.row].Color ?? "1D9BF6")
         
+        if let catagory = categories?[indexPath.row]{
+            
+            cell.textLabel?.text = catagory.name
+            guard let catagoryColor = UIColor(hexString: catagory.Color) else {fatalError()}
+            cell.backgroundColor = catagoryColor
+            cell.textLabel?.textColor = ContrastColorOf(catagoryColor, returnFlat: true)
+    }
         return cell
     }
     
@@ -100,9 +105,12 @@ class CategoryViewController: SwipeTableViewController {
             self.save(Category: newCategory)
         }
         alert.addAction(action)
-        alert.addTextField{ (field) in
+        alert.addTextField { (field) in
             textField = field
-            textField.placeholder = "Add a new Category"
+            textField.placeholder = "Add a new category"
+            textField.spellCheckingType = .yes // this and the next line enable spell check
+            textField.autocorrectionType = .yes
+            textField.autocapitalizationType = .sentences // this capitalizes first word
         }
         present(alert, animated: true, completion: nil)
         
