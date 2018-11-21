@@ -125,12 +125,18 @@ class TodoListViewController: SwipeTableViewController{
             self.tableView.reloadData()
         }
         
-        alert.addTextField { (alertTextField) in
-            alertTextField.placeholder = "Create new Item"
-            textField = alertTextField
-        }
+//        alert.addTextField { (alertTextField) in
+//            textField = alertTextField
+//        }
         
         alert.addAction(action)
+        alert.addTextField { (field) in
+            textField = field
+            textField.placeholder = "Create new Item"
+            textField.spellCheckingType = .yes // this and the next line enable spell check
+            textField.autocorrectionType = .yes
+            textField.autocapitalizationType = .sentences // this capitalizes first word
+        }
         present(alert, animated: true, completion: nil)
         
     }
@@ -138,16 +144,16 @@ class TodoListViewController: SwipeTableViewController{
     
     func loadItems(){
         todoItems = selectedCategory?.items.sorted(byKeyPath: "title",ascending: true)
-        todoItems = realm.objects(Item.self)
+//        todoItems = realm.objects(Item.self)
         tableView.reloadData()
     }
     
     //MARK:- Delete Items from Swipe
     override func updateModel(at IndexPath: IndexPath) {
-        if let item = self.todoItems? [IndexPath.row] {
+        if let item = todoItems? [IndexPath.row] {
             do {
-                try self.realm.write {
-                    self.realm.delete(item)
+                try realm.write {
+                    realm.delete(item)
                 }
             }catch{
                 print("Error deleting Items,\(error)")

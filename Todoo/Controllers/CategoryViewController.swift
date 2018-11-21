@@ -68,7 +68,7 @@ class CategoryViewController: SwipeTableViewController {
             print("Error saving Category,\(error)")
         }
         
-        self.tableView.reloadData()
+        tableView.reloadData()
     }
     func loadCategories() {
         
